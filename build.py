@@ -34,6 +34,7 @@ LAST_UPDATED = "2026-10-05"
 
 PAGES = [
     "page-1-chatgpt-visibility.md",
+    "page-2-ai-overviews.md",
     "page-5-seo-pricing.md",
     "page-6-ai-visibility-tools.md",
 ]
@@ -46,7 +47,11 @@ LINK_MAP = {
     "$750 visibility audit + fix": OFFER_CTA,
     "$2,500/month local ai visibility retainer": OFFER_CTA,
     "$2,500/month retainer": OFFER_CTA,
+    "ai visibility tracking tools": "/best-ai-visibility-tools-med-spa/",
     "med spa seo pricing": "/med-spa-seo-pricing/",
+    "$750 audit + fix": OFFER_CTA,
+    "how to audit your med spa's ai visibility in 30 minutes": None,
+    "audit your ai visibility in 30 minutes": None,
     "med spa seo pricing — what all of this actually costs": "/med-spa-seo-pricing/",
     "best ai visibility tracking tools for med spas": "/best-ai-visibility-tools-med-spa/",
     "how to get your med spa to show up in chatgpt": "/med-spa-chatgpt-visibility/",
@@ -66,6 +71,10 @@ INTERNAL_LINKS = {  # slug -> (nav label, short description for the hub)
     "/med-spa-chatgpt-visibility/": (
         "ChatGPT visibility",
         "How to get your med spa named in ChatGPT answers, with a 30-day plan.",
+    ),
+    "/google-ai-overviews-not-showing-med-spa/": (
+        "AI Overviews",
+        "Why Google AI Overviews skip a med spa, how to tell which of the three reasons is yours, and the fix for each.",
     ),
     "/med-spa-seo-pricing/": (
         "Med spa SEO pricing",
@@ -91,7 +100,13 @@ def parse_title_meta(text: str) -> dict:
     slug = grab(r"\*\*Slug:\*\*\s*`?([^`\n]+?)`?\s*$")
     if not slug:
         slug = grab(r"\*\*Slug:\*\*\s*(\S+)")
-    return {"title": title, "meta": meta, "slug": slug.strip().strip("`").strip("/")}
+    last_updated = grab(r"\*\*Last updated:\*\*\s*(\d{4}-\d{2}-\d{2})", LAST_UPDATED)
+    return {
+        "title": title,
+        "meta": meta,
+        "slug": slug.strip().strip("`").strip("/"),
+        "last_updated": last_updated,
+    }
 
 
 def extract_body(text: str) -> str:
@@ -169,8 +184,8 @@ def jsonld(page: dict, faqs: list[dict]) -> str:
             "@type": "Article",
             "headline": page["h1"],
             "description": page["meta"],
-            "datePublished": LAST_UPDATED,
-            "dateModified": LAST_UPDATED,
+            "datePublished": page["last_updated"],
+            "dateModified": page["last_updated"],
             "inLanguage": "en",
             "author": {
                 "@type": "Person",
@@ -294,7 +309,7 @@ def build() -> None:
         # Inject byline after the H1.
         byline = (
             f'<p class="byline">By Quill, Content &amp; SEO, {SITE_NAME} · '
-            f'<span class="updated">Last updated {LAST_UPDATED}</span></p>'
+            f'<span class="updated">Last updated {page["last_updated"]}</span></p>'
         )
         article_html = article_html.replace("</h1>", "</h1>\n" + byline, 1)
         if disclosure:
@@ -348,6 +363,7 @@ def write_hub(built: list[dict]) -> None:
         "Overviews, and local search. Published prices and real numbers.",
         "absolute_url": SITE_BASE + "/",
         "h1": "Get your clinic named in AI answers",
+        "last_updated": max([p["last_updated"] for p in built] + [LAST_UPDATED]),
     }
     doc = f"""{head(page, [])}
 {header_html()}
@@ -369,12 +385,15 @@ def write_hub(built: list[dict]) -> None:
 
 
 def write_sitemap(built: list[dict]) -> None:
-    urls = [SITE_BASE + "/"] + [p["absolute_url"] for p in built]
+    hub_lastmod = max([p["last_updated"] for p in built] + [LAST_UPDATED])
+    entries = [(SITE_BASE + "/", "1.0", hub_lastmod)] + [
+        (p["absolute_url"], "0.8", p["last_updated"]) for p in built
+    ]
     items = "\n".join(
-        f"  <url>\n    <loc>{u}</loc>\n    <lastmod>{LAST_UPDATED}</lastmod>\n"
+        f"  <url>\n    <loc>{u}</loc>\n    <lastmod>{lm}</lastmod>\n"
         f"    <changefreq>monthly</changefreq>\n"
-        f"    <priority>{'1.0' if u == SITE_BASE + '/' else '0.8'}</priority>\n  </url>"
-        for u in urls
+        f"    <priority>{pr}</priority>\n  </url>"
+        for u, pr, lm in entries
     )
     (OUT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
