@@ -53,9 +53,22 @@ LAST_UPDATED = "2026-10-05"
 PAGES = [
     "page-1-chatgpt-visibility.md",
     "page-2-ai-overviews.md",
+    "page-3-gbp.md",
     "page-5-seo-pricing.md",
     "page-6-ai-visibility-tools.md",
 ]
+
+# Live internal pages. Any other site-absolute path in a draft is a planned
+# page that is not published yet, so it is unwrapped to plain text at build
+# time and never ships as a 404.
+LIVE_SLUGS = {
+    "/",
+    "/med-spa-chatgpt-visibility/",
+    "/google-ai-overviews-not-showing-med-spa/",
+    "/google-business-profile-med-spa/",
+    "/med-spa-seo-pricing/",
+    "/best-ai-visibility-tools-med-spa/",
+}
 
 # Anchor-text -> destination. Value None means "unwrap the link" (target page
 # not published yet); never ship a link to a page that does not exist.
@@ -101,6 +114,10 @@ INTERNAL_LINKS = {  # slug -> (nav label, short description for the hub)
     "/best-ai-visibility-tools-med-spa/": (
         "AI visibility tools",
         "Five clinic-sized tools compared, plus the free method you can run today.",
+    ),
+    "/google-business-profile-med-spa/": (
+        "Google Business Profile",
+        "The 12-point checklist to claim, verify, and complete your med spa's Google profile.",
     ),
 }
 
@@ -149,6 +166,25 @@ def extract_disclosure(raw: str) -> str | None:
     return m.group(1).strip() if m else None
 
 
+def extract_jsonld_section(body_md: str) -> tuple[str, str | None]:
+    """Pull the drafter's ``## JSON-LD`` block out of the visible body.
+
+    Drafts that ship a ready ``@graph`` (HowTo/FAQPage) put it in a fenced
+    ``json`` block under an H2. That scaffolding must not render on the page.
+    Return the body without the section plus the raw JSON string (dates still
+    templated), or ``(body_md, None)`` when the draft has no such section.
+    """
+    m = re.search(r"^##\s+JSON-LD\s*$", body_md, re.MULTILINE)
+    if not m:
+        return body_md, None
+    rest = body_md[m.end():]
+    nxt = re.search(r"^##\s+", rest, re.MULTILINE)
+    section = rest[: nxt.start()] if nxt else rest
+    trimmed = (body_md[: m.start()] + (rest[nxt.start():] if nxt else "")).rstrip() + "\n"
+    fm = re.search(r"```json\s*\n(.*?)```", section, re.DOTALL)
+    return trimmed, (fm.group(1).strip() if fm else None)
+
+
 def rewrite_links(text: str) -> str:
     text = text.replace(
         "(See [Page 4](/ROO/issues/ROO-4), Med Spa Schema Markup.)",
@@ -164,6 +200,14 @@ def rewrite_links(text: str) -> str:
             if dest.startswith("/"):
                 dest = internal(dest)
             return f"[{label}]({dest})"
+        # Direct site-absolute paths (e.g. /med-spa-schema-markup/) are either
+        # live pages (rewrite with the Pages subpath) or planned pages that are
+        # not published yet (unwrap to plain text so no 404 ever ships).
+        if target.startswith("/") and not target.startswith("//"):
+            normalized = "/" + target.strip("/") + "/" if target != "/" else "/"
+            if normalized in LIVE_SLUGS:
+                return f"[{label}]({internal(target)})"
+            return label
         return m.group(0)
 
     return re.sub(r"\[([^\]]+)\]\(([^)]+)\)", repl, text)
@@ -235,6 +279,7 @@ def jsonld(page: dict, faqs: list[dict]) -> str:
 
 
 def head(page: dict, faqs: list[dict]) -> str:
+    ld = page.get("jsonld_override") or jsonld(page, faqs)
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -257,7 +302,7 @@ def head(page: dict, faqs: list[dict]) -> str:
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{internal('/assets/style.css')}" />
   <script type="application/ld+json">
-{jsonld(page, faqs)}
+{ld}
   </script>
 </head>"""
 
@@ -315,16 +360,23 @@ def build() -> None:
         if not meta["title"] or not meta["meta"] or not meta["slug"]:
             raise ValueError(f"missing SEO fields in {fname}: {meta}")
         body_md = extract_body(raw)
+        body_md, jsonld_override = extract_jsonld_section(body_md)
         h1 = plain(body_md.splitlines()[0].lstrip("# ").strip())
         disclosure = extract_disclosure(raw)
         body_md = rewrite_links(body_md)
         faqs = extract_faq(body_md)
         slug = "/" + meta["slug"].strip("/") + "/"
+        if jsonld_override:
+            jsonld_override = (
+                jsonld_override.replace("PUBLISH_DATE", meta["last_updated"])
+                .replace("UPDATE_DATE", meta["last_updated"])
+            )
         page = {
             **meta,
             "h1": h1,
             "slug": slug,
             "absolute_url": SITE_BASE + slug,
+            "jsonld_override": jsonld_override,
         }
         article_html = md_to_html(body_md)
         # Inject byline after the H1.
