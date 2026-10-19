@@ -16,6 +16,7 @@ import json
 import re
 from datetime import date
 from pathlib import Path
+from urllib.parse import urlparse
 
 import markdown
 
@@ -26,6 +27,23 @@ OUT = ROOT
 # --- Site config -------------------------------------------------------------
 # If Forge deploys to a different repo/domain, change SITE_BASE here and rerun.
 SITE_BASE = "https://majidraimi.github.io/room39-med-spa-guide"
+# The site is served from a GitHub Pages *project* path, so internal links must
+# carry the subpath (e.g. /room39-med-spa-guide/assets/style.css). Derive it from
+# SITE_BASE so the two can never drift apart.
+SITE_PATH = urlparse(SITE_BASE).path.rstrip("/")
+
+
+def internal(path: str) -> str:
+    """Return a site-internal path rooted at the project subpath.
+
+    ``internal("/assets/style.css")`` -> ``/room39-med-spa-guide/assets/style.css``.
+    Absolute URLs (http/https) pass through unchanged.
+    """
+    if not path.startswith("/"):
+        path = "/" + path
+    if SITE_PATH and not path.startswith(SITE_PATH + "/") and path != SITE_PATH:
+        return SITE_PATH + path
+    return path
 OFFER_URL = "https://majidraimi.github.io/room39-ai-visibility-preview/"
 OFFER_CTA = OFFER_URL + "#lead"
 SITE_NAME = "Room 39"
@@ -143,6 +161,8 @@ def rewrite_links(text: str) -> str:
             dest = LINK_MAP.get(label.strip().lower(), None)
             if dest is None:
                 return label  # unwrap: no dead links
+            if dest.startswith("/"):
+                dest = internal(dest)
             return f"[{label}]({dest})"
         return m.group(0)
 
@@ -235,7 +255,7 @@ def head(page: dict, faqs: list[dict]) -> str:
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="{internal('/assets/style.css')}" />
   <script type="application/ld+json">
 {jsonld(page, faqs)}
   </script>
@@ -244,12 +264,13 @@ def head(page: dict, faqs: list[dict]) -> str:
 
 def header_html() -> str:
     links = "\n".join(
-        f'        <a href="{slug}">{label}</a>' for slug, (label, _) in INTERNAL_LINKS.items()
+        f'        <a href="{internal(slug)}">{label}</a>'
+        for slug, (label, _) in INTERNAL_LINKS.items()
     )
     return f"""<body>
   <header class="site-head">
     <div class="wrap head-inner">
-      <a class="brand" href="/"><span class="brand-mark">R39</span><span>Room&nbsp;39</span></a>
+      <a class="brand" href="{internal('/')}"><span class="brand-mark">R39</span><span>Room&nbsp;39</span></a>
       <nav aria-label="Content">
 {links}
       </nav>
@@ -276,7 +297,7 @@ def footer_html() -> str:
       <p class="foot-brand">{SITE_NAME} — {SITE_TAGLINE}.</p>
       <p>Not medical advice. We work on organic visibility and never handle patient data.</p>
       <p><a href="{OFFER_URL}">Offer site &amp; pricing</a> ·
-         <a href="/sitemap.xml">Sitemap</a></p>
+         <a href="{internal('/sitemap.xml')}">Sitemap</a></p>
     </div>
   </footer>
 </body>
@@ -350,7 +371,7 @@ def write_hub(built: list[dict]) -> None:
     for p in built:
         label, desc = INTERNAL_LINKS[p["slug"]]
         cards.append(
-            f"""      <a class="card" href="{p['slug']}">
+            f"""      <a class="card" href="{internal(p['slug'])}">
         <h2>{html.escape(p['h1'])}</h2>
         <p>{html.escape(desc)}</p>
         <span class="read">Read the guide &rarr;</span>
@@ -426,7 +447,17 @@ def write_llms(built: list[dict]) -> None:
     ]
     for p in built:
         lines.append(f"- [{p['h1']}]({p['absolute_url']}): {p['meta']}")
-    lines += ["", "## Offer", "", f"- [$99 AI Visibility Snapshot]({OFFER_CTA})"]
+    lines += [
+        "",
+        "## Hub",
+        "",
+        f"- [{SITE_NAME} med spa guides]({SITE_BASE}/): AI search visibility and "
+        "local SEO guides for independent med spas.",
+        "",
+        "## Offer",
+        "",
+        f"- [$99 AI Visibility Snapshot]({OFFER_CTA})",
+    ]
     (OUT / "llms.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
