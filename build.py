@@ -54,6 +54,7 @@ PAGES = [
     "page-1-chatgpt-visibility.md",
     "page-2-ai-overviews.md",
     "page-3-gbp.md",
+    "page-4-schema.md",
     "page-5-seo-pricing.md",
     "page-6-ai-visibility-tools.md",
 ]
@@ -66,6 +67,7 @@ LIVE_SLUGS = {
     "/med-spa-chatgpt-visibility/",
     "/google-ai-overviews-not-showing-med-spa/",
     "/google-business-profile-med-spa/",
+    "/med-spa-schema-markup/",
     "/med-spa-seo-pricing/",
     "/best-ai-visibility-tools-med-spa/",
 }
@@ -89,7 +91,7 @@ LINK_MAP = {
     "chatgpt visibility guide": "/med-spa-chatgpt-visibility/",
     "page 4": None,
     "google business profile for med spas": None,
-    "med spa schema markup": None,
+    "med spa schema markup": "/med-spa-schema-markup/",
     "how to audit your med spa's ai visibility": None,
     "how to choose a med spa marketing agency": None,
     "profound vs semrush vs ahrefs": None,
@@ -118,6 +120,10 @@ INTERNAL_LINKS = {  # slug -> (nav label, short description for the hub)
     "/google-business-profile-med-spa/": (
         "Google Business Profile",
         "The 12-point checklist to claim, verify, and complete your med spa's Google profile.",
+    ),
+    "/med-spa-schema-markup/": (
+        "Schema markup",
+        "The exact JSON-LD to use when there is no MedicalSpa type, the properties Google reads, and the errors that void it.",
     ),
 }
 

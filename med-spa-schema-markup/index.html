@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Med Spa Schema Markup: The JSON-LD That Gets You Cited</title>
+  <meta name="description" content="Med spas have no schema type of their own. Here is the exact JSON-LD to use instead, the properties Google reads, and the errors that void it." />
+  <link rel="canonical" href="https://majidraimi.github.io/room39-med-spa-guide/med-spa-schema-markup/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#21453A" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Med Spa Schema Markup: The JSON-LD That Gets You Cited" />
+  <meta property="og:description" content="Med spas have no schema type of their own. Here is the exact JSON-LD to use instead, the properties Google reads, and the errors that void it." />
+  <meta property="og:url" content="https://majidraimi.github.io/room39-med-spa-guide/med-spa-schema-markup/" />
+  <meta property="og:site_name" content="Room 39" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2321453A'/%3E%3Cpath d='M9 23V9h6.2c2.6 0 4.3 1.3 4.3 3.4 0 1.5-.8 2.6-2.2 3 1.7.3 2.8 1.5 2.8 3.3 0 2.4-1.9 3.9-4.9 3.9H9z' fill='%23FBF9F6'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/room39-med-spa-guide/assets/style.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Med Spa Schema Markup: The JSON-LD That Gets You Cited",
+      "description": "Med spas have no schema type of their own. Here is the exact JSON-LD to use instead, the properties Google reads, and the errors that void it.",
+      "datePublished": "2026-10-26",
+      "dateModified": "2026-10-26",
+      "inLanguage": "en",
+      "author": {
+        "@type": "Person",
+        "name": "Quill",
+        "jobTitle": "Content & SEO",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Room 39"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Room 39"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://majidraimi.github.io/room39-med-spa-guide/med-spa-schema-markup/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is there a MedicalSpa schema type?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. MedicalSpa is not part of the schema.org vocabulary and returns a 404 on schema.org. Use MedicalClinic or MedicalBusiness for a treatment-led clinic, or HealthAndBeautyBusiness or DaySpa for an aesthetics-led spa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should a med spa use MedicalBusiness or LocalBusiness?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MedicalBusiness is already a LocalBusiness subtype, so use MedicalBusiness or MedicalClinic and you inherit the full LocalBusiness property set. You do not need to emit LocalBusiness as a second type."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does schema markup improve Google rankings?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not directly. Google uses structured data to understand a page and to power rich results. The benefit comes from clearer entity signals and a higher click-through rate, not from the markup itself."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I add my Google reviews with schema?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only if those reviews are visible on the page and genuinely collected. Google prohibits marking up reviews that misrepresent the page, and a business's own review snippets about itself are not eligible for review rich results."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does FAQ schema still show rich results?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For most med spas, no. Since August 2023 Google shows FAQ rich results only for well-known, authoritative government and health websites. Keep an FAQPage block for entity clarity if you want, but do not expect a rich result."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need schema on every page?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Put the MedicalClinic or HealthAndBeautyBusiness block on the location page it describes. Supporting articles can carry Article markup. One entity, one page."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I check my med spa schema?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Run the URL through the Schema Markup Validator and Google's Rich Results Test, then check the live page in Search Console's URL Inspection tool."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap head-inner">
+      <a class="brand" href="/room39-med-spa-guide/"><span class="brand-mark">R39</span><span>Room&nbsp;39</span></a>
+      <nav aria-label="Content">
+        <a href="/room39-med-spa-guide/med-spa-chatgpt-visibility/">ChatGPT visibility</a>
+        <a href="/room39-med-spa-guide/google-ai-overviews-not-showing-med-spa/">AI Overviews</a>
+        <a href="/room39-med-spa-guide/med-spa-seo-pricing/">Med spa SEO pricing</a>
+        <a href="/room39-med-spa-guide/best-ai-visibility-tools-med-spa/">AI visibility tools</a>
+        <a href="/room39-med-spa-guide/google-business-profile-med-spa/">Google Business Profile</a>
+        <a href="/room39-med-spa-guide/med-spa-schema-markup/">Schema markup</a>
+      </nav>
+      <a class="btn btn-sm" href="https://majidraimi.github.io/room39-ai-visibility-preview/#lead">$99 snapshot</a>
+    </div>
+  </header>
+  <main>
+    <article class="prose">
+<h1>Med Spa Schema Markup: The JSON-LD That Gets You Cited</h1>
+<p class="byline">By Quill, Content &amp; SEO, Room 39 · <span class="updated">Last updated 2026-10-26</span></p>
+<p>Schema markup tells search engines and AI systems what your med spa is, where it is, and when it is open, in a format they can read without guessing. The catch is that there is no <code>MedicalSpa</code> schema type. For a clinic that offers medical treatments, use <code>MedicalBusiness</code> or its subtype <code>MedicalClinic</code>. For an aesthetics-led spa, use <code>HealthAndBeautyBusiness</code> or <code>DaySpa</code>. Add the full <code>LocalBusiness</code> property set, and put one JSON-LD block on the location's main page.</p>
+<p>This guide gives you the exact type, the JSON-LD to paste, and the mistakes that make valid-looking markup worthless.</p>
+<h2>What schema markup actually does</h2>
+<p>Structured data is a standardized format for describing a page. Google's introduction says it uses structured data to understand page content and to gather information about "the people, books, or companies" the markup describes (<a href="https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data">Google Search Central, "Introduction to structured data markup in Google Search," accessed 2026-10-26</a>).</p>
+<p>The upside is measurable. Google's own case-study list reports that Rotten Tomatoes measured a 25% higher click-through rate on pages with structured data, the Food Network saw a 35% increase in visits after converting pages to enable search features, and Nestlé measured an 82% higher click-through rate on pages that appear as rich results (<a href="https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data">Google Search Central, accessed 2026-10-26</a>). Those are vendor-published case studies, so read them as directional.</p>
+<p>Schema does not rewrite your content or lift your ranking by itself. It removes ambiguity from facts you already publish: name, address, phone, hours, services, and location.</p>
+<h2>There is no "MedicalSpa" schema type</h2>
+<p>The most common med spa schema mistake is inventing the type. <code>MedicalSpa</code> is not in the schema.org vocabulary. Requesting <code>https://schema.org/MedicalSpa</code> returns a 404, and the type is absent from the current schema.org release (<a href="https://schema.org/MedicalSpa">schema.org, accessed 2026-10-26</a>).</p>
+<p>When a validator sees <code>"@type": "MedicalSpa"</code>, it flags an unrecognized type. You lose the machine-readable meaning you were trying to add, and you gain a review flag.</p>
+<h2>Which schema type should a med spa use?</h2>
+<p>schema.org offers two branches that fit a med spa. Both sit under <code>LocalBusiness</code>, so both inherit the address, hours, and location properties.</p>
+<table>
+<thead>
+<tr>
+<th>Your clinic</th>
+<th>Use</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Treatment-led: injectables, lasers, and body treatments under medical direction</td>
+<td><code>MedicalClinic</code></td>
+<td><code>MedicalClinic</code> is a subtype of <code>MedicalBusiness</code>, which sits under <code>LocalBusiness</code> in the health-lifesci extension (<a href="https://schema.org/MedicalClinic">schema.org/MedicalClinic</a>, <a href="https://schema.org/MedicalBusiness">schema.org/MedicalBusiness</a>).</td>
+</tr>
+<tr>
+<td>Aesthetics-led: facials, massage, and day-spa services with limited clinical work</td>
+<td><code>HealthAndBeautyBusiness</code> or <code>DaySpa</code></td>
+<td><code>DaySpa</code> and <code>BeautySalon</code> are subtypes of <code>HealthAndBeautyBusiness</code>, which is a subtype of <code>LocalBusiness</code> (<a href="https://schema.org/HealthAndBeautyBusiness">schema.org/HealthAndBeautyBusiness</a>, <a href="https://schema.org/DaySpa">schema.org/DaySpa</a>).</td>
+</tr>
+</tbody>
+</table>
+<p>If the clinic offers medical treatments under a licensed provider, <code>MedicalClinic</code> is the safer primary type. Use <code>HealthAndBeautyBusiness</code> only when the business genuinely is a spa. Do not emit both types on the same node to hedge. Pick the one that describes the core business, then let the service list carry the rest.</p>
+<h3>One entity per location</h3>
+<p>Each physical location gets its own page and its own JSON-LD block with a stable <code>@id</code>. Two clinics means two blocks, each on its own location page. Duplicate blocks are the second most common error after the invented type, and they split the entity signals Google is trying to assemble.</p>
+<h2>The med spa JSON-LD to paste</h2>
+<p>Here is a complete example for a single-location clinic. Replace every placeholder with your real details, and keep the structure.</p>
+<pre><code class="language-json">{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;MedicalClinic&quot;,
+  &quot;@id&quot;: &quot;https://www.example.com/locations/scottsdale/#clinic&quot;,
+  &quot;name&quot;: &quot;Glow Aesthetics Scottsdale&quot;,
+  &quot;description&quot;: &quot;Independent medical spa offering injectables, laser treatments, and skin care in Scottsdale, Arizona.&quot;,
+  &quot;url&quot;: &quot;https://www.example.com/locations/scottsdale/&quot;,
+  &quot;telephone&quot;: &quot;+1-480-555-0142&quot;,
+  &quot;image&quot;: &quot;https://www.example.com/images/glow-aesthetics-scottsdale.jpg&quot;,
+  &quot;priceRange&quot;: &quot;$$$&quot;,
+  &quot;address&quot;: {
+    &quot;@type&quot;: &quot;PostalAddress&quot;,
+    &quot;streetAddress&quot;: &quot;4820 N Scottsdale Rd, Suite 210&quot;,
+    &quot;addressLocality&quot;: &quot;Scottsdale&quot;,
+    &quot;addressRegion&quot;: &quot;AZ&quot;,
+    &quot;postalCode&quot;: &quot;85251&quot;,
+    &quot;addressCountry&quot;: &quot;US&quot;
+  },
+  &quot;geo&quot;: {
+    &quot;@type&quot;: &quot;GeoCoordinates&quot;,
+    &quot;latitude&quot;: 33.4942,
+    &quot;longitude&quot;: -111.9261
+  },
+  &quot;openingHoursSpecification&quot;: [
+    {
+      &quot;@type&quot;: &quot;OpeningHoursSpecification&quot;,
+      &quot;dayOfWeek&quot;: [&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;],
+      &quot;opens&quot;: &quot;09:00&quot;,
+      &quot;closes&quot;: &quot;17:00&quot;
+    },
+    {
+      &quot;@type&quot;: &quot;OpeningHoursSpecification&quot;,
+      &quot;dayOfWeek&quot;: &quot;Saturday&quot;,
+      &quot;opens&quot;: &quot;10:00&quot;,
+      &quot;closes&quot;: &quot;14:00&quot;
+    }
+  ],
+  &quot;areaServed&quot;: {
+    &quot;@type&quot;: &quot;City&quot;,
+    &quot;name&quot;: &quot;Scottsdale&quot;
+  },
+  &quot;sameAs&quot;: [
+    &quot;https://www.google.com/maps/place/example&quot;,
+    &quot;https://www.instagram.com/example&quot;
+  ]
+}
+</code></pre>
+<h3>The properties that matter most</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>What it does</th>
+<th>Common mistake</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@type</code></td>
+<td>Names the business</td>
+<td>Using <code>MedicalSpa</code>, which does not exist</td>
+</tr>
+<tr>
+<td><code>@id</code></td>
+<td>Gives the entity a permanent identifier</td>
+<td>Omitting it, then repeating the block on other pages</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>States the real-world business name</td>
+<td>Adding city or treatment keywords</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td>Gives the postal address as a <code>PostalAddress</code> object</td>
+<td>Splitting the address into free-text fields</td>
+</tr>
+<tr>
+<td><code>geo</code></td>
+<td>Gives latitude and longitude</td>
+<td>Pin dropped on a nearby plaza, not the door</td>
+</tr>
+<tr>
+<td><code>telephone</code></td>
+<td>Gives the primary phone number</td>
+<td>A tracking number that changes over time</td>
+</tr>
+<tr>
+<td><code>openingHoursSpecification</code></td>
+<td>Gives hours by day</td>
+<td>Hours when the phone is not answered</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>Points at the location page</td>
+<td>Pointing every location at the homepage</td>
+</tr>
+<tr>
+<td><code>sameAs</code></td>
+<td>Lists the profiles you control (Google Business Profile, social)</td>
+<td>Linking profiles you do not own</td>
+</tr>
+<tr>
+<td><code>areaServed</code></td>
+<td>Names the city or region you serve</td>
+<td>Listing a metro you cannot actually serve</td>
+</tr>
+</tbody>
+</table>
+<p><code>sameAs</code> is how you connect the site to the profiles you already maintain. Add your Google Business Profile URL and your social profiles, and nothing else. Every URL should resolve to a page you control.</p>
+<h2>What not to put in med spa schema</h2>
+<p>Google's structured data policies are a hard gate. Markup that violates them can trigger a manual action, and a structured data manual action removes rich result eligibility for the page (<a href="https://developers.google.com/search/docs/appearance/structured-data/sd-policies">Google Search Central, "Structured data general guidelines," accessed 2026-10-26</a>).</p>
+<ul>
+<li><strong>Reviews you did not collect.</strong> Do not add <code>aggregateRating</code> or <code>review</code> properties for reviews that are not on the page or are not genuine. Faking them breaks the policy and, in most markets, advertising law.</li>
+<li><strong>Content a reader cannot see.</strong> Do not mark up a service, price, or provider the page does not show. Google's guidelines require the markup to be a true representation of the visible page.</li>
+<li><strong>Clinical claims.</strong> Do not describe treatment outcomes, efficacy, or safety in schema. This is marketing markup, not a medical claim.</li>
+<li><strong>Invented types.</strong> Stay inside the schema.org vocabulary. Unrecognized types are ignored.</li>
+<li><strong>A <code>@type</code> you cannot support.</strong> If you are not a <code>MedicalClinic</code>, do not label yourself one to chase a category.</li>
+</ul>
+<h2>How to add and validate the markup</h2>
+<ol>
+<li>Put the JSON-LD in the <code>&lt;head&gt;</code> of the location page, inside a <code>&lt;script type="application/ld+json"&gt;</code> block.</li>
+<li>Validate the structure in the <a href="https://validator.schema.org/">Schema Markup Validator</a>.</li>
+<li>Run the page through Google's <a href="https://search.google.com/test/rich-results">Rich Results Test</a> to see what Google parses.</li>
+<li>After deployment, check the live URL in Search Console's URL Inspection tool.</li>
+<li>Keep the markup in sync with your Google Business Profile. Change hours in one place, change them in both.</li>
+</ol>
+<p>FAQ and HowTo markup are a separate story. In August 2023 Google limited FAQ rich results to well-known, authoritative government and health sites, and in September 2023 it retired HowTo rich results entirely (<a href="https://developers.google.com/search/blog/2023/08/howto-faq-changes">Google Search Central, "Changes to HowTo and FAQ rich results," published 2023-08-08, updated 2023-09-14</a>). Those blocks can still clarify entities for machines, but do not build a content plan around a rich result you will not get.</p>
+<h2>Does schema markup help AI search?</h2>
+<p>Partly. Google states there are "no additional requirements to appear in AI Overviews or AI Mode" and that "there's also no special schema.org structured data that you need to add" (<a href="https://developers.google.com/search/docs/appearance/ai-features">Google Search Central, "AI features and your website," accessed 2026-10-26</a>). The same page says to make sure "your structured data matches the visible text on the page."</p>
+<p>Schema is a foundation, not a lever. The research on generative engines points at content signals instead. A KDD 2024 study found that optimization tactics such as adding citations, quotations, and statistics can lift a page's visibility in generative engine responses by up to 40% (<a href="https://arxiv.org/abs/2311.09735">Aggarwal et al., "GEO: Generative Engine Optimization," arXiv:2311.09735, KDD 2024</a>).</p>
+<p>The practical order is this: make the facts machine-readable with schema, then make the page worth citing with sourced, specific content.</p>
+<h2>Frequently asked questions</h2>
+<h3>Is there a MedicalSpa schema type?</h3>
+<p>No. <code>MedicalSpa</code> is not part of the schema.org vocabulary and returns a 404 on schema.org. Use <code>MedicalClinic</code> or <code>MedicalBusiness</code> for a treatment-led clinic, or <code>HealthAndBeautyBusiness</code> or <code>DaySpa</code> for an aesthetics-led spa.</p>
+<h3>Should a med spa use MedicalBusiness or LocalBusiness?</h3>
+<p><code>MedicalBusiness</code> is already a <code>LocalBusiness</code> subtype, so use <code>MedicalBusiness</code> or <code>MedicalClinic</code> and you inherit the full <code>LocalBusiness</code> property set. You do not need to emit <code>LocalBusiness</code> as a second type.</p>
+<h3>Does schema markup improve Google rankings?</h3>
+<p>Not directly. Google uses structured data to understand a page and to power rich results. The benefit comes from clearer entity signals and a higher click-through rate, not from the markup itself.</p>
+<h3>Can I add my Google reviews with schema?</h3>
+<p>Only if those reviews are visible on the page and genuinely collected. Google prohibits marking up reviews that misrepresent the page, and a business's own review snippets about itself are not eligible for review rich results.</p>
+<h3>Does FAQ schema still show rich results?</h3>
+<p>For most med spas, no. Since August 2023 Google shows FAQ rich results only for well-known, authoritative government and health websites. Keep an <code>FAQPage</code> block for entity clarity if you want, but do not expect a rich result.</p>
+<h3>Do I need schema on every page?</h3>
+<p>No. Put the <code>MedicalClinic</code> or <code>HealthAndBeautyBusiness</code> block on the location page it describes. Supporting articles can carry <code>Article</code> markup. One entity, one page.</p>
+<h3>How do I check my med spa schema?</h3>
+<p>Run the URL through the Schema Markup Validator and Google's Rich Results Test, then check the live page in Search Console's URL Inspection tool.</p>
+<h2>What to do next</h2>
+<p>Add the <code>MedicalClinic</code> or <code>HealthAndBeautyBusiness</code> block to your location page this week, validate it, and align it with your Google Business Profile. That gives every other page a clean entity to link back to.</p>
+<p>If the profile is not finished, start with <a href="/room39-med-spa-guide/google-business-profile-med-spa/">Google Business Profile for med spas</a>. For the wider strategy, read <a href="/room39-med-spa-guide/med-spa-chatgpt-visibility/">how to get your med spa to show up in ChatGPT</a> and <a href="/room39-med-spa-guide/google-ai-overviews-not-showing-med-spa/">why Google AI Overviews skip your med spa</a>. When you cover more than one city, do it without doorway pages in local SEO for med spas.</p>
+<p>Our <a href="https://majidraimi.github.io/room39-ai-visibility-preview/#lead">$99 AI Visibility Snapshot</a> checks whether ChatGPT, Google AI Overviews, and Perplexity name your clinic for your top five treatments and shows where the facts disagree. The <a href="https://majidraimi.github.io/room39-ai-visibility-preview/#lead">$750 Audit + Fix</a> covers the schema, profile, and on-page work.</p>
+<p><strong>Keep reading:</strong>
+- <a href="/room39-med-spa-guide/med-spa-chatgpt-visibility/">How to Get Your Med Spa to Show Up in ChatGPT</a> — the hub guide
+- <a href="/room39-med-spa-guide/google-business-profile-med-spa/">Google Business Profile for Med Spas</a> — the 12-point checklist
+- <a href="/room39-med-spa-guide/google-ai-overviews-not-showing-med-spa/">Why Google AI Overviews Skip Your Med Spa</a> — the three reasons and their fixes
+- Local SEO for Med Spas Without Doorway Pages — the compliant way to cover a metro</p>
+<hr>
+<h2>Sources (accessed 2026-10-26)</h2>
+<ol>
+<li>schema.org. "MedicalBusiness." https://schema.org/MedicalBusiness — definition; subclass of LocalBusiness; part of the health-lifesci extension.</li>
+<li>schema.org. "MedicalClinic." https://schema.org/MedicalClinic — subclass of MedicalBusiness and MedicalOrganization.</li>
+<li>schema.org. "HealthAndBeautyBusiness." https://schema.org/HealthAndBeautyBusiness — subclass of LocalBusiness.</li>
+<li>schema.org. "DaySpa." https://schema.org/DaySpa — subclass of HealthAndBeautyBusiness.</li>
+<li>schema.org. "MedicalSpa." https://schema.org/MedicalSpa — returns 404; the type does not exist in the vocabulary.</li>
+<li>Google Search Central. "Introduction to structured data markup in Google Search." https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data — what structured data is; JSON-LD; case studies: Rotten Tomatoes 25% higher CTR, Food Network 35% increase in visits, Nestlé 82% higher CTR.</li>
+<li>Google Search Central. "Structured data general guidelines." https://developers.google.com/search/docs/appearance/structured-data/sd-policies — markup must be a true representation of the visible page; manual action risk; no invisible content.</li>
+<li>Google Search Central. "Changes to HowTo and FAQ rich results." Published 2023-08-08, updated 2023-09-14. https://developers.google.com/search/blog/2023/08/howto-faq-changes — FAQ rich results limited to well-known, authoritative government and health sites; HowTo rich results deprecated 2023-09-13.</li>
+<li>Google Search Central. "AI features and your website." https://developers.google.com/search/docs/appearance/ai-features — no additional requirements for AI Overviews or AI Mode; no special schema.org structured data required; structured data should match visible text.</li>
+<li>Aggarwal, P., Murahari, V., Rajpurohit, T., Kalyan, A., Narasimhan, K., Deshpande, A. "GEO: Generative Engine Optimization." arXiv:2311.09735, KDD 2024. https://arxiv.org/abs/2311.09735 — GEO can boost visibility in generative engine responses by up to 40%; tactics include citing sources, quotations, and statistics.</li>
+</ol>
+<p><strong>Verification note:</strong> All primary sources were fetched and read on 2026-10-26. The schema.org hierarchy and the <code>MedicalSpa</code> 404 were verified against the current schema.org release JSON. The page makes no medical or treatment-outcome claims. No reviews, testimonials, or patient data are invented.</p>
+    </article>
+    <aside class="cta">
+      <h2>See where your clinic stands in AI answers</h2>
+      <p>Our <strong>$99 AI Visibility Snapshot</strong> checks whether ChatGPT, Google AI
+      Overviews, and Perplexity name your med spa for your top treatments, then gives you a
+      prioritized fix list. Fixed price, delivered in 48 hours.</p>
+      <a class="btn" href="https://majidraimi.github.io/room39-ai-visibility-preview/#lead">Get my $99 AI Visibility Snapshot</a>
+    </aside>
+  </main>
+  <footer class="site-foot">
+    <div class="wrap">
+      <p class="foot-brand">Room 39 — AI search visibility and local SEO for independent med spas.</p>
+      <p>Not medical advice. We work on organic visibility and never handle patient data.</p>
+      <p><a href="https://majidraimi.github.io/room39-ai-visibility-preview/">Offer site &amp; pricing</a> ·
+         <a href="/room39-med-spa-guide/sitemap.xml">Sitemap</a></p>
+    </div>
+  </footer>
+</body>
+</html>
